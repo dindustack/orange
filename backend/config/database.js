@@ -5,9 +5,9 @@ const connectDatabase = () => {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useCreateIndex: true
-    }). then(con => {
+    }).then(con => {
         console.log(`MongoDB Database connected with HOST: ${con.connection.host}`)
     })
 }
 
-module.exports = connectDatabase
+module.exports = connectDatabase 
