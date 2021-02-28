@@ -29,7 +29,7 @@ class APIFeatures {
     let queryStr = JSON.stringify(queryCopy);
     queryStr = queryStr.replace(/\b(gt|gteCIt|Ite)\b/g, (match) => `$${match}`);
 
-    this.query = this.query.find(JSON.parse(queryCopy));
+    this.query = this.query.find(JSON.parse(queryStr));
     return this;
   }
   pagination(resultsPerPage) {
