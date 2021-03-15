@@ -25,7 +25,7 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
   sendToken(user, 200, res);
 });
 
-// Login user => /a[i/v1/login]
+// Login user => /api/v1/login
 exports.loginUser = catchAsyncErrors(async (req, res, next) => {
   const { email, password } = req.body;
 
@@ -179,3 +179,29 @@ exports.logout = catchAsyncErrors(async (req, res, next) => {
     message: "Logged out",
   });
 });
+
+// Admin Routes
+
+// Get all users  => /api/v1/admin/users
+exports.allUsers = catchAsyncErrors(async (req, res, next) => {
+  const users = await User.find();
+
+  res.status(200).json({
+    success: true,
+    users
+  })
+})
+
+// Get user details => /api/v1/admin/user/:id
+exports.getUserDetails = catchAsyncErrors(async (req, res, next) => {
+  const user = await User.findById(req.params.id);
+
+  if(!user) {
+    return next(new handleError(`User does not found with id: ${req.params.id}`))
+  }
+
+  res.status(200).json({
+    success: true,
+    user
+  })
+})
