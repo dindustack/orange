@@ -1,6 +1,8 @@
-import Navbar from './Components/Navbar'
-import Footer from './Components/Footer'
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Navbar from './Components/Layout/Navbar'
+import Footer from './Components/Layout/Footer'
 import Hero from './Components/Hero'
+import Home from './Components/Home'
 import {
   ChakraProvider,
   Box,
@@ -16,6 +18,9 @@ function App() {
           <Navbar />
           <Hero />
           <Footer />
+          <Router>
+            <Route path='/user' component={Home} exact />
+          </Router>
           
         
       </Box>

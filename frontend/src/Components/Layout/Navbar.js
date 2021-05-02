@@ -21,7 +21,7 @@ import {
   ChevronDownIcon,
   ChevronRightIcon,
 } from '@chakra-ui/icons';
-import { ColorModeSwitcher } from '../ColorModeSwitcher';
+import { ColorModeSwitcher } from '../../ColorModeSwitcher';
 
 export default function WithSubnavigation() {
   const { isOpen, onToggle } = useDisclosure();
@@ -36,23 +36,9 @@ export default function WithSubnavigation() {
         px={{ base: 4 }}
         align={'center'}
       >
-        <Flex
-          flex={{ base: 1, md: 'auto' }}
-          ml={{ base: -2 }}
-          display={{ base: 'flex', md: 'none' }}
-        >
-          <IconButton
-            onClick={onToggle}
-            icon={
-              isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />
-            }
-            variant={'ghost'}
-            aria-label={'Toggle Navigation'}
-          />
-        </Flex>
-        <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
+        <Flex flex={{ base: 1 }} justify={{ base: 'start' }}>
           <Text
-            textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
+            textAlign={useBreakpointValue({ base: 'left' })}
             fontFamily={'heading'}
             color={useColorModeValue('gray.800', 'white')}
           >
@@ -95,6 +81,20 @@ export default function WithSubnavigation() {
             Sign Up
           </Button>
         </Stack>
+        <Flex
+          flex={{ base: 1, md: 'auto' }}
+          mr={{ base: -100 }}
+          display={{ base: 'flex', md: 'none' }}
+        >
+          <IconButton
+            onClick={onToggle}
+            icon={
+              isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />
+            }
+            variant={'ghost'}
+            aria-label={'Toggle Navigation'}
+          />
+        </Flex>
       </Flex>
 
       <Collapse in={isOpen} animateOpacity>
@@ -256,41 +256,11 @@ const MobileNavItem = ({ label, children, href }) => {
 
 const NAV_ITEMS = [
   {
-    label: 'Inspiration',
-    children: [
-      {
-        label: 'Explore Design Work',
-        subLabel: 'Trending Design to inspire you',
-        href: '#',
-      },
-      {
-        label: 'New & Noteworthy',
-        subLabel: 'Up-and-coming Designers',
-        href: '#',
-      },
-    ],
-  },
-  {
-    label: 'Find Work',
-    children: [
-      {
-        label: 'Job Board',
-        subLabel: 'Find your dream design job',
-        href: '#',
-      },
-      {
-        label: 'Freelance Projects',
-        subLabel: 'An exclusive list for contract work',
-        href: '#',
-      },
-    ],
-  },
-  {
-    label: 'Learn Design',
+    label: 'Find Gift Inspiration',
     href: '#',
   },
   {
-    label: 'Hire Designers',
+    label: 'Buy Gifts',
     href: '#',
   },
 ];
