@@ -25,15 +25,14 @@ export default function CallToActionWithAnnotation() {
             fontSize={{ base: '2xl', sm: '4xl', md: '6xl' }}
             lineHeight={'110%'}
           >
-            Make money from <br />
-            <Text as={'span'} color={'green.400'}>
-              your audience
+            Every purchase is <br />
+            <Text as={'span'} color={'red.400'}>
+              made with love
             </Text>
           </Heading>
           <Text color={'gray.500'}>
-            Monetize your content by charging your most loyal readers and reward
-            them loyalty points. Give back to your loyal readers by granting
-            them access to your pre-releases and sneak-peaks.
+            Find the perfect gift in seconds through our data-driven 
+            product recommendation site. Find gift product for yourself or someone special.
           </Text>
           <Stack
             direction={'column'}
@@ -73,7 +72,7 @@ export default function CallToActionWithAnnotation() {
                 top={'-15px'}
                 transform={'rotate(10deg)'}
               >
-                Starting at $15/mo
+                Search now
               </Text>
             </Box>
           </Stack>
