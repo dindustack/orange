@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Navbar from './Components/Layout/Navbar'
 import Footer from './Components/Layout/Footer'
 import Hero from './Components/Hero'
+import Products from './Components/Products'
 import Home from './Components/Home'
 import {
   ChakraProvider,
@@ -17,6 +18,7 @@ function App() {
           
           <Navbar />
           <Hero />
+          <Products />
           <Footer />
           <Router>
             <Route path='/user' component={Home} exact />
