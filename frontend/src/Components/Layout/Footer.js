@@ -76,7 +76,7 @@ export default function LargeWithNewsletter() {
               </Text>
             </Box>
             <Text fontSize={'sm'}>
-              © 2020 Chakra Templates. All rights reserved
+              © Orange Inc. All rights reserved
             </Text>
             <Stack direction={'row'} spacing={6}>
               <SocialButton label={'Twitter'} href={'#'}>
