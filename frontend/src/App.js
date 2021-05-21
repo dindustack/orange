@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Navbar from './Components/Layout/Navbar'
 import Footer from './Components/Layout/Footer'
 import Hero from './Components/Hero'
-import Products from './Components/Products'
+import Products from './Components/Product/Products'
 import Home from './Components/Home'
 import {
   ChakraProvider,
@@ -16,11 +16,11 @@ function App() {
       <Box textAlign="center" fontSize="xl">
        
           
+          <Router>
           <Navbar />
           <Hero />
           <Products />
           <Footer />
-          <Router>
             <Route path='/user' component={Home} exact />
           </Router>
           

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ActionCreator } from 'Utils/Helpers';
+import { ActionCreator }  from '../../Utils/index';
 import * as Products from '../constants/productConstants.js';
 
 // Fetch products
@@ -13,6 +13,22 @@ export const getProducts = () => async (dispatch) => {
 
     } catch (error) {
         dispatch(ActionCreator(Products.ALL_PRODUCTS_FAILURE, error.response.data.message
+        ))
+    }
+}
+
+
+// Fetch products details
+export const getProductDetails = (id) => async (dispatch) => {
+    try {
+        dispatch(ActionCreator(Products.PRODUCT_DETAILS_REQUEST));
+
+        const { data } = await axios.get(`/api/v1/product/${id}`)
+
+        dispatch(ActionCreator(Products.PRODUCT_DETAILS_SUCCESS, data.product));
+
+    } catch (error) {
+        dispatch(ActionCreator(Products.PRODUCT_DETAILS_FAILURE, error.response.data.message
         ))
     }
 }
