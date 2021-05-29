@@ -1,10 +1,11 @@
-import MetaData from './Layout/MetaData';
+import Hero from "./Hero"
+import Products from "./Product/Products"
 
 const Home = () => {
     return (
         <>
-        <MetaData title={'Show love with a gift'} />
-            
+        <Hero />
+        <Products />
         </>
     )
 }
