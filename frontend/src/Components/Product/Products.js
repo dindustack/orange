@@ -1,25 +1,12 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProducts } from '../../Redux/actions/productActions';
-import Product from './ProductItem'
-import {
-  Box,
-  useColorModeValue,
-  Icon,
-  chakra,
-  Stack,
-  Heading, 
-  Container,
-  SimpleGrid,
-} from '@chakra-ui/react';
-import {
-  Alert,
-  AlertIcon,
-} from '@chakra-ui/react';
+import Product from './ProductItem';
+import { Box, Center, Stack, Heading, SimpleGrid } from '@chakra-ui/react';
+import { Alert, AlertIcon } from '@chakra-ui/react';
 import { CloseButton } from '@chakra-ui/react';
-import Loader from '../loader/Loader.jsx'
-
-
+import Loader from '../loader/Loader.jsx';
+import ProductFilter from './ProductFilter';
 
 function ProductAddToCart() {
   const dispatch = useDispatch();
@@ -28,8 +15,7 @@ function ProductAddToCart() {
   );
 
   useEffect(() => {
-    
-    if(error) {
+    if (error) {
       return (
         <Alert status="error">
           <AlertIcon />
@@ -48,7 +34,7 @@ function ProductAddToCart() {
       {loading ? (
         <Loader />
       ) : (
-        <Box as="section" bg="tomato">
+        <Box as="section">
           <Box
             py={{ base: '64px', md: '80px' }}
             px={{ base: '24px', md: '40px' }}
@@ -56,18 +42,34 @@ function ProductAddToCart() {
             // maxWidth="1200px"
             mx="auto"
           >
-            <Heading
-              textTransform="capitalize"
-              textAlign="center"
-              fontSize={{ base: '2xl', md: '4xl' }}
-              color="gray.800"
-            >
-              gift collection
-            </Heading>
+            <Stack>
+              <Heading
+                textTransform="capitalize"
+                textAlign="center"
+                fontSize={{ base: '2xl', md: '4xl' }}
+                color={'gray.800'}
+              >
+                popular gift collections
+              </Heading>
+            </Stack>
+
+            <Box maxW="7xl" mx={'auto'} pt={5} px={{ base: 2 }}>
+              <Center>
+                <SimpleGrid
+                  columns={{ base: 5, md: 3, lg: 4, xl: 5 }}
+                  spacing={{ base: 5, lg: 8 }}
+                >
+                  <ProductFilter title={"New Gift's"} />
+                  <ProductFilter title={"Top Rated Gift's"} />
+                  <ProductFilter title={"Trending Gift's"} />
+                  <ProductFilter title={"Best Offer Gift's"} />
+                </SimpleGrid>
+              </Center>
+            </Box>
 
             <SimpleGrid
               mt={{ base: '64px', md: '80px' }}
-              columns={{ base: 1, md: 3 }}
+              columns={{ base: 1, md: 2, lg: 3 }}
               spacing="40px"
             >
               {products &&

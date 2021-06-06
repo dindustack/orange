@@ -1,13 +1,15 @@
-import Hero from "./Hero"
-import Products from "./Product/Products"
+import Hero from './Hero';
+// import DeliveryInfo from './Layout/DeliveryInfo';
+import Products from './Product/Products';
 
 const Home = () => {
-    return (
-        <>
-        <Hero />
-        <Products />
-        </>
-    )
-}
+  return (
+    <>
+      <Hero />
+      {/* <DeliveryInfo /> */}
+      <Products />
+    </>
+  );
+};
 
-export default Home
+export default Home;
