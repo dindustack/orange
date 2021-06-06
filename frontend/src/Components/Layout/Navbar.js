@@ -36,6 +36,20 @@ export default function WithSubnavigation() {
         px={{ base: 4 }}
         align={'center'}
       >
+        <Flex
+          flex={{ base: 1, md: 'auto' }}
+          ml={{ base: -2 }}
+          display={{ base: 'flex', md: 'none' }}
+        >
+          <IconButton
+            onClick={onToggle}
+            icon={
+              isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />
+            }
+            variant={'ghost'}
+            aria-label={'Toggle Navigation'}
+          />
+        </Flex>
         <Flex flex={{ base: 1 }} justify={{ base: 'start' }}>
           <Text
             textAlign={useBreakpointValue({ base: 'left' })}
@@ -81,20 +95,6 @@ export default function WithSubnavigation() {
             Sign Up
           </Button>
         </Stack>
-        <Flex
-          flex={{ base: 1, md: 'auto' }}
-          mr={{ base: -100 }}
-          display={{ base: 'flex', md: 'none' }}
-        >
-          <IconButton
-            onClick={onToggle}
-            icon={
-              isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />
-            }
-            variant={'ghost'}
-            aria-label={'Toggle Navigation'}
-          />
-        </Flex>
       </Flex>
 
       <Collapse in={isOpen} animateOpacity>
@@ -119,7 +119,7 @@ const DesktopNav = () => {
                 // color={useColorModeValue('gray.600', 'gray.200')}
                 _hover={{
                   textDecoration: 'none',
-                //   color: useColorModeValue('gray.800', 'white'),
+                  //   color: useColorModeValue('gray.800', 'white'),
                 }}
               >
                 {navItem.label}
@@ -252,7 +252,6 @@ const MobileNavItem = ({ label, children, href }) => {
     </Stack>
   );
 };
-
 
 const NAV_ITEMS = [
   {

@@ -1,12 +1,15 @@
-import MetaData from './Layout/MetaData';
+import Hero from './Hero';
+// import DeliveryInfo from './Layout/DeliveryInfo';
+import Products from './Product/Products';
 
 const Home = () => {
-    return (
-        <>
-        <MetaData title={'Show love with a gift'} />
-            
-        </>
-    )
-}
+  return (
+    <>
+      <Hero />
+      {/* <DeliveryInfo /> */}
+      <Products />
+    </>
+  );
+};
 
-export default Home
+export default Home;
