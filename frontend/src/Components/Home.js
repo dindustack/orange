@@ -1,13 +1,15 @@
 import Hero from './Hero';
-// import DeliveryInfo from './Layout/DeliveryInfo';
 import Products from './Product/Products';
+import FeatureInfo from './Layout/FeatureInfo';
+import NewsLetter from './Layout/Newsletter';
 
 const Home = () => {
   return (
     <>
       <Hero />
-      {/* <DeliveryInfo /> */}
       <Products />
+      <FeatureInfo />
+      {/* <NewsLetter /> */}
     </>
   );
 };

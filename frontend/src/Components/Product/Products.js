@@ -56,7 +56,7 @@ function ProductAddToCart() {
             <Box maxW="7xl" mx={'auto'} pt={5} px={{ base: 2 }}>
               <Center>
                 <SimpleGrid
-                  columns={{ base: 5, md: 3, lg: 4, xl: 5 }}
+                  columns={{ md: 3, lg: 4, xl: 5 }}
                   spacing={{ base: 5, lg: 8 }}
                 >
                   <ProductFilter title={"New Gift's"} />

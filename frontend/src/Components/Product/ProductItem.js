@@ -238,7 +238,7 @@ const ProductItem = ({ product }) => {
                   fontSize={'1.2em'}
                 >
                   <Box
-                    fontSize="2xl"
+                    fontSize="xl"
                     fontWeight="semibold"
                     as="h4"
                     lineHeight="tight"
