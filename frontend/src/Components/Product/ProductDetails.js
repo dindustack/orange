@@ -1,68 +1,119 @@
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import Alerts from '../Alerts';
 import {
-  Button,
+  getProductDetails,
+  clearErrors,
+} from '../../Redux/actions/productActions';
+
+import {
+  Container,
+  SimpleGrid,
+  Image,
   Flex,
   Heading,
-  Image,
-  Stack,
   Text,
-  useBreakpointValue,
+  Stack,
+  StackDivider,
+  useColorModeValue,
+  Badge,
+  Tabs,
+  TabList,
+  TabPanels,
+  Tab,
+  TabPanel,
 } from '@chakra-ui/react';
+import ProductInfo from './ProductInfo';
+import MetaData from '../Layout/MetaData';
 
-export default function ProductDetails() {
+const ProductDetails = ({ match }) => {
+  const dispatch = useDispatch();
+
+  const { product, error } = useSelector(state => state.productDetails);
+
+  useEffect(() => {
+    dispatch(getProductDetails(match.params.id));
+
+    if (error) {
+      <Alerts status={error} title={error} />;
+      dispatch(clearErrors());
+    }
+  }, [dispatch, error, match.params.id]);
+
   return (
-    <Stack direction={{ base: 'column', md: 'row' }}>
-      <Flex p={8} flex={1} align={'center'} justify={'center'}>
-        <Stack spacing={6} w={'full'} maxW={'lg'}>
-          <Heading fontSize={{ base: '3xl', md: '4xl', lg: '5xl' }}>
-            <Text
-              as={'span'}
-              position={'relative'}
-              _after={{
-                content: "''",
-                width: 'full',
-                height: useBreakpointValue({ base: '20%', md: '30%' }),
-                position: 'absolute',
-                bottom: 1,
-                left: 0,
-                bg: 'blue.400',
-                zIndex: -1,
-              }}
-            >
-              Freelance
-            </Text>
-            <br />{' '}
-            <Text color={'blue.400'} as={'span'}>
-              Design Projects
-            </Text>{' '}
+    <>
+      <MetaData title={product.name} />
+      <Container maxW={'7xl'} py={12}>
+        <Stack spacing={4} mb={{ base: 8, md: 15 }}>
+          <Heading
+            textTransform={'capitalize'}
+            color={useColorModeValue('gray.800', 'white')}
+            fontWeight={600}
+            p={2}
+            alignSelf={'flex-start'}
+          >
+            {product.name}
           </Heading>
-          <Text fontSize={{ base: 'md', lg: 'lg' }} color={'gray.500'}>
-            The project board is an exclusive resource for contract work. It's
-            perfect for freelancers, agencies, and moonlighters.
-          </Text>
-          <Stack direction={{ base: 'column', md: 'row' }} spacing={4}>
-            <Button
-              rounded={'full'}
-              bg={'blue.400'}
-              color={'white'}
-              _hover={{
-                bg: 'blue.500',
-              }}
-            >
-              Create Project
-            </Button>
-            <Button rounded={'full'}>How It Works</Button>
-          </Stack>
         </Stack>
-      </Flex>
-      <Flex flex={1}>
-        <Image
-          alt={'Login Image'}
-          objectFit={'cover'}
-          src={
-            'https://images.unsplash.com/photo-1527689368864-3a821dbccc34?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'
-          }
-        />
-      </Flex>
-    </Stack>
+        <Tabs variant="soft-rounded" defaultIndex={0} isLazy>
+          <TabList mb={{ base: 8, md: 20 }}>
+            <Tab>General Info</Tab>
+            <Tab>Product Details</Tab>
+            <Tab>Reviews</Tab>
+          </TabList>
+          <TabPanels>
+            <TabPanel>
+              <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
+                <Flex>
+                  <Image
+                    rounded={'md'}
+                    alt={'feature image'}
+                    src={
+                      'https://images.unsplash.com/photo-1554200876-56c2f25224fa?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'
+                    }
+                  />
+                </Flex>
+                <Stack spacing={4}>
+                  <Badge
+                    textTransform={'uppercase'}
+                    color={product.stock > 0 ? 'green.400' : 'red.400'}
+                    fontWeight={600}
+                    fontSize={'sm'}
+                    bg={useColorModeValue('blue.50', 'blue.900')}
+                    p={2}
+                    alignSelf={'flex-start'}
+                    rounded={'md'}
+                  >
+                    {product.stock > 0 ? 'AVAILABLE' : 'Out of Stock'}
+                  </Badge>
+
+                  <Heading>A digital Product design agency</Heading>
+                  <Text color={'gray.500'} fontSize={'lg'}>
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                    diam nonumy eirmod tempor invidunt ut labore
+                  </Text>
+                  <Stack
+                    spacing={4}
+                    divider={
+                      <StackDivider
+                        borderColor={useColorModeValue('gray.100', 'gray.700')}
+                      />
+                    }
+                  ></Stack>
+                </Stack>
+              </SimpleGrid>
+            </TabPanel>
+            <TabPanel>
+              <ProductInfo textInfo={product.description} />
+            </TabPanel>
+            <TabPanel>
+              <p>review</p>
+            </TabPanel>
+          </TabPanels>
+        </Tabs>
+      </Container>
+    </>
   );
-}
+};
+
+export default ProductDetails;

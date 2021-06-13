@@ -3,9 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getProducts } from '../../Redux/actions/productActions';
 import Product from './ProductItem';
 import { Box, Center, Stack, Heading, SimpleGrid } from '@chakra-ui/react';
-import { Alert, AlertIcon } from '@chakra-ui/react';
+import { Alert, AlertIcon, CircularProgress } from '@chakra-ui/react';
 import { CloseButton } from '@chakra-ui/react';
-import Loader from '../loader/Loader.jsx';
 import ProductFilter from './ProductFilter';
 
 function ProductAddToCart() {
@@ -32,7 +31,7 @@ function ProductAddToCart() {
   return (
     <>
       {loading ? (
-        <Loader />
+        <CircularProgress isIndeterminate color="green.300" />
       ) : (
         <Box as="section">
           <Box
