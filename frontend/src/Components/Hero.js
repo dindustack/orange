@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import {
   Container,
   Stack,
@@ -59,17 +60,19 @@ export default function CallToActionWithVideo() {
             direction={{ base: 'column', sm: 'row' }}
             justify={'center'}
           >
-            <Button
-              rounded={'full'}
-              size={'lg'}
-              fontWeight={'normal'}
-              px={6}
-              colorScheme={'red'}
-              bg={'red.400'}
-              _hover={{ bg: 'red.500' }}
-            >
-              Choose a gift
-            </Button>
+            <Link to={'/gift-catalog'}>
+              <Button
+                rounded={'full'}
+                size={'lg'}
+                fontWeight={'normal'}
+                px={6}
+                colorScheme={'red'}
+                bg={'red.400'}
+                _hover={{ bg: 'red.500' }}
+              >
+                Choose a gift
+              </Button>
+            </Link>
           </Stack>
         </Stack>
         <Flex

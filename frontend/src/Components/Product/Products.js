@@ -2,9 +2,16 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProducts } from '../../Redux/actions/productActions';
 import Product from './ProductItem';
-import { Box, Center, Stack, Heading, SimpleGrid } from '@chakra-ui/react';
-import { Alert, AlertIcon, CircularProgress } from '@chakra-ui/react';
-import { CloseButton } from '@chakra-ui/react';
+import Alerts from '../Alerts';
+import {
+  Box,
+  Center,
+  Stack,
+  Heading,
+  SimpleGrid,
+  CircularProgress,
+} from '@chakra-ui/react';
+
 import ProductFilter from './ProductFilter';
 
 function ProductAddToCart() {
@@ -13,20 +20,14 @@ function ProductAddToCart() {
     state => state.products
   );
 
+  // const keyword = match.params.keyword
+
   useEffect(() => {
     if (error) {
-      return (
-        <Alert status="error">
-          <AlertIcon />
-          {error}
-          <CloseButton position="absolute" right="8px" top="8px" />
-        </Alert>
-      );
+      <Alerts status={error} title={error} />;
     }
 
     dispatch(getProducts());
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, error]);
   return (
     <>
