@@ -1,3 +1,4 @@
+import { Link, Route } from 'react-router-dom';
 import {
   Box,
   Flex,
@@ -7,7 +8,6 @@ import {
   Stack,
   Collapse,
   Icon,
-  Link,
   Popover,
   PopoverTrigger,
   PopoverContent,
@@ -22,6 +22,7 @@ import {
   ChevronRightIcon,
 } from '@chakra-ui/icons';
 import { ColorModeSwitcher } from '../../ColorModeSwitcher';
+import SearchBar from '../SearchBar';
 
 export default function WithSubnavigation() {
   const { isOpen, onToggle } = useDisclosure();
@@ -51,13 +52,15 @@ export default function WithSubnavigation() {
           />
         </Flex>
         <Flex flex={{ base: 1 }} justify={{ base: 'start' }}>
-          <Text
-            textAlign={useBreakpointValue({ base: 'left' })}
-            fontFamily={'heading'}
-            color={useColorModeValue('gray.800', 'white')}
-          >
-            Orange
-          </Text>
+          <Link to={'/'}>
+            <Text
+              textAlign={useBreakpointValue({ base: 'left' })}
+              fontFamily={'heading'}
+              color={useColorModeValue('gray.800', 'white')}
+            >
+              Orange
+            </Text>
+          </Link>
 
           <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
             <DesktopNav />
@@ -70,6 +73,7 @@ export default function WithSubnavigation() {
           direction={'row'}
           spacing={6}
         >
+          <Route render={({ history }) => <SearchBar />} />
           <ColorModeSwitcher justifySelf="flex-end" />
 
           <Button

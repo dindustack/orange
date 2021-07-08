@@ -2,10 +2,16 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProducts } from '../../Redux/actions/productActions';
 import Product from './ProductItem';
-import { Box, Center, Stack, Heading, SimpleGrid } from '@chakra-ui/react';
-import { Alert, AlertIcon } from '@chakra-ui/react';
-import { CloseButton } from '@chakra-ui/react';
-import Loader from '../loader/Loader.jsx';
+import Alerts from '../Alerts';
+import {
+  Box,
+  Center,
+  Stack,
+  Heading,
+  SimpleGrid,
+  CircularProgress,
+} from '@chakra-ui/react';
+
 import ProductFilter from './ProductFilter';
 
 function ProductAddToCart() {
@@ -14,25 +20,19 @@ function ProductAddToCart() {
     state => state.products
   );
 
+  // const keyword = match.params.keyword
+
   useEffect(() => {
     if (error) {
-      return (
-        <Alert status="error">
-          <AlertIcon />
-          {error}
-          <CloseButton position="absolute" right="8px" top="8px" />
-        </Alert>
-      );
+      <Alerts status={error} title={error} />;
     }
 
     dispatch(getProducts());
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, error]);
   return (
     <>
       {loading ? (
-        <Loader />
+        <CircularProgress isIndeterminate color="green.300" />
       ) : (
         <Box as="section">
           <Box
@@ -56,7 +56,7 @@ function ProductAddToCart() {
             <Box maxW="7xl" mx={'auto'} pt={5} px={{ base: 2 }}>
               <Center>
                 <SimpleGrid
-                  columns={{ base: 5, md: 3, lg: 4, xl: 5 }}
+                  columns={{ md: 3, lg: 4, xl: 5 }}
                   spacing={{ base: 5, lg: 8 }}
                 >
                   <ProductFilter title={"New Gift's"} />
